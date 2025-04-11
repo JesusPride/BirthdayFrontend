@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import AppButton from '../ui/Appbutton.vue';
+import AppButton from './AppButton.vue';
 
 export default {
   name: 'AppNavbar',
