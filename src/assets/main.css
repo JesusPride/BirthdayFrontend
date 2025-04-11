@@ -1,0 +1,499 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap');
+
+:root {
+  /* Birthday Countdown Theme */
+  --birthday-primary-color: #00ffcc;
+  --birthday-secondary-color: #ff3399;
+  --birthday-accent-color: #ffcc00;
+  --birthday-bg-color: #0a0a20;
+  --birthday-text-color: #ffffff;
+  --birthday-card-bg: rgba(10, 10, 32, 0.8);
+  --birthday-input-bg: rgba(255, 255, 255, 0.1);
+  --birthday-border-color: rgba(255, 255, 255, 0.2);
+
+  /* Landing Page Theme */
+  --landing-primary-color: #FF4D6D;
+  --landing-secondary-color: #7B2CBF;
+  --landing-accent-color: #FFC6D3;
+  --landing-dark-color: #1E1E24;
+  --landing-light-color: #F5F5F5;
+  --landing-success-color: #4CAF50;
+  --landing-font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Birthday Theme Styles */
+body.birthday-theme {
+  background-color: var(--birthday-bg-color);
+  /* background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 255, 204, 0.05) 0%, transparent 20%),
+    radial-gradient(circle at 80% 10%, rgba(255, 51, 153, 0.05) 0%, transparent 20%),
+    linear-gradient(135deg, #0a0a20 0%, #1a1a40 100%); */
+  color: var(--birthday-text-color);
+  background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 204, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 80% 10%, rgba(255, 51, 153, 0.05) 0%, transparent 20%);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Generate 100 stars using CSS only */
+.bg-animation::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(var(--birthday-text-color) 1px, transparent 1px),
+    radial-gradient(var(--birthday-text-color) 1px, transparent 1px),
+    radial-gradient(var(--birthday-text-color) 1px, transparent 1px),
+    radial-gradient(var(--birthday-text-color) 1px, transparent 1px),
+    radial-gradient(var(--birthday-text-color) 1px, transparent 1px);
+  background-size: 25% 25%;
+  background-position:
+    10% 20%, 30% 50%, 70% 80%, 90% 30%, 50% 10%;
+  animation: twinkle 5s infinite ease-in-out;
+  opacity: 0.8;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.2; }
+}
+
+
+.birthday-theme .time-display {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(2rem, 8vw, 8rem);
+  cursor: pointer;
+  user-select: none;
+  color: var(--birthday-primary-color);
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+  margin-top: 4vh;
+}
+
+.birthday-theme .countdown-unit {
+  background-color: var(--birthday-card-bg);
+  border-radius: 12px;
+  margin: 10px;
+  padding: 1rem;
+
+  border: 1px solid rgba(0, 255, 204, 0.3);
+}
+
+.birthday-theme .countdown-value {
+  color: var(--birthday-accent-color);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: bold;
+
+
+}
+
+.birthday-theme .countdown-label {
+  color: var(--birthday-primary-color);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.countdown-container{
+  /* background: red; */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  gap: 1rem;
+  margin: 5vh auto;
+  max-width: 800px;
+}
+
+.blinking {
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+.birthday-theme .birthday-message {
+  color: var(--birthday-text-color);
+  background-color: rgba(255, 51, 153, 0.1);
+  border-left: 4px solid var(--birthday-secondary-color);
+}
+
+/* Landing Page Theme Styles */
+body.landing-theme {
+  font-family: var(--landing-font-main);
+  line-height: 1.6;
+  color: var(--landing-dark-color);
+  background-color: var(--landing-light-color);
+}
+
+/* Common Styles */
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-align: center;
+  position: relative;
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Light theme styles */
+body.light-theme.birthday-theme {
+  --birthday-bg-color: #f0f0f0;
+  --birthday-text-color: #333;
+  --birthday-card-bg: rgba(255, 255, 255, 0.8);
+  --birthday-input-bg: rgba(0, 0, 0, 0.05);
+  --birthday-border-color: rgba(0, 0, 0, 0.1);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 255, 204, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 10%, rgba(255, 51, 153, 0.1) 0%, transparent 20%),
+    linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem;
+  }
+}
+
+.carousel-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 3rem auto 1rem;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.carousel-item img {
+  max-height: 400px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.loading {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-top: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(0, 255, 204, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.headline {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin: 2rem auto;
+  color: var(--birthday-accent-color);
+  font-weight: 600;
+  text-shadow: 0 2px 10px rgba(255, 204, 0, 0.5);
+  max-width: 800px;
+}
+
+#birthdayDate {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--birthday-secondary-color);
+  margin: 2rem auto;
+  background-color: rgba(255, 51, 153, 0.1);
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  box-shadow: 0 0 15px rgba(255, 51, 153, 0.3);
+}
+
+.birthday-emoji {
+  font-size: 2rem;
+  margin: 0 0.5rem;
+  animation: bounce 2s infinite;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.message-input {
+  max-width: 500px;
+  margin: 2rem auto;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 8px;
+}
+
+.message-input:focus {
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  border-color: var(--primary-color);
+  background-color: rgba(10, 10, 32, 0.9);
+  color: var(--text-color);
+}
+
+.btn-custom {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 51, 153, 0.4);
+}
+
+.wishes-section {
+  max-width: 800px;
+  margin: 3rem auto;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.wish-card {
+  background: rgba(0, 255, 204, 0.05);
+  border-left: 3px solid var(--primary-color);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.wish-card h5 {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+.wish-card p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* Audio Player */
+.audio-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 100;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.volume-slider {
+  width: 100px;
+  height: 4px;
+  -webkit-appearance: none;
+  background: var(--input-bg);
+  border-radius: 2px;
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.song-title {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.song-artist {
+  font-size: 0.8rem;
+  color: var(--primary-color);
+}
+
+/* Confetti Canvas */
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Fancy background animation */
+.bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--text-color);
+  border-radius: 50%;
+  animation: twinkle 5s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Landing page styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .countdown-unit {
+    min-width: 80px;
+    padding: 0.7rem;
+  }
+  
+  .carousel-container {
+    width: 95%;
+  }
+  
+  .birthday-message {
+    width: 95%;
+  }
+  
+  .audio-player {
+    bottom: 10px;
+    right: 10px;
+    padding: 0.7rem;
+  }
+  
+  .volume-slider {
+    width: 60px;
+  }
+  
+  .song-info {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+      display: none;
+  }
+
+  .hero {
+      flex-direction: column;
+      text-align: center;
+      padding-top: 4rem;
+  }
+
+  .hero-content, .hero-image {
+      width: 100%;
+  }
+
+  .hero-content {
+      padding-right: 0;
+      margin-bottom: 2rem;
+  }
+
+  .features-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .steps {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+  }
+
+  .step {
+      width: 100%;
+      max-width: 300px;
+  }
+
+  .footer-section {
+      width: 100%;
+  }
+}

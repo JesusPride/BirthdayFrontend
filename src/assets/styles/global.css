@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --primary-color: #00ffcc;
+  --secondary-color: #ff3399;
+  --accent-color: #ffcc00;
+  --bg-color: #0a0a20;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 255, 204, 0.05) 0%, transparent 20%),
+    radial-gradient(circle at 80% 10%, rgba(255, 51, 153, 0.05) 0%, transparent 20%);
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-align: center;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-fluid {
+  padding: 2rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Light theme styles */
+body.light-theme {
+  --bg-color: #f0f8ff;
+  --text-color: #333344;
+  --primary-color: #009988;
+  --secondary-color: #ff3366;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 255, 204, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 10%, rgba(255, 51, 153, 0.1) 0%, transparent 20%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem;
+  }
+} 
