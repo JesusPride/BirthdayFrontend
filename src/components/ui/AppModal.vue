@@ -19,6 +19,8 @@
             Sign Up
           </div>
         </div>
+
+        
         
         <form 
           class="modal-form" 

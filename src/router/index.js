@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory, createWebHashHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import Dashboard from "@/components/Dashboard.vue";
 import BirthdayCountdown from "@/components/BirthdayCountdown.vue";
@@ -27,8 +27,13 @@ const routes = [
   },
 ];
 
+// Use hash mode if specified in environment, else use history mode
+const history = import.meta.env.VITE_ROUTER_MODE === 'hash' 
+  ? createWebHashHistory(import.meta.env.BASE_URL)
+  : createWebHistory(import.meta.env.BASE_URL);
+
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history,
   routes,
 });
 
