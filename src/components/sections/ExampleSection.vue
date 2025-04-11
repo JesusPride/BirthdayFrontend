@@ -38,7 +38,7 @@
   </template>
   
   <script>
-  import AppButton from '../ui/AppButton.vue';
+  import AppButton from '../ui/Appbutton.vue';
   
   export default {
     name: 'ExampleSection',

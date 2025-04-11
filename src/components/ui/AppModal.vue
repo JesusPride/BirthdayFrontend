@@ -104,7 +104,7 @@
   </template>
   
   <script>
-  import AppButton from './AppButton.vue';
+  import AppButton from './Appbutton.vue';
   import { api } from '../../services/api';
   
   export default {
