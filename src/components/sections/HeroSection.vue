@@ -12,7 +12,7 @@
   </template>
   
   <script>
-  import AppButton from '../ui/Appbutton.vue';
+  import AppButton from '../ui/AppButton.vue';
   
   export default {
     name: 'HeroSection',
