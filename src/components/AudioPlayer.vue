@@ -31,8 +31,8 @@
       </div>
 
       <div class="song-info">
-        <span class="song-title">Happy Birthday</span>
-        <span class="song-artist">Birthday Song</span>
+        <span class="song-title">{{ songTitle }}</span>
+        <span class="song-artist">{{ songArtist }}</span>
       </div>
     </div>
   </div>
@@ -41,11 +41,18 @@
 <script>
 export default {
   name: "AudioPlayer",
+  props: {
+    isBirthdayMode: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       isPlaying: false,
       volume: 50,
-      musicSrc: "/audio/happy-birthday.mp3",
+      countdownMusic: "/audio/happy-birthday.mp3",
+      birthdayMusic: "/audio/Congratulations__Happy_Birthday_128k.mp3",
       currentTime: 0,
       duration: 0,
     };
@@ -56,6 +63,15 @@ export default {
       if (this.volume < 30) return "fas fa-volume-down";
       return "fas fa-volume-up";
     },
+    musicSrc() {
+      return this.isBirthdayMode ? this.birthdayMusic : this.countdownMusic;
+    },
+    songTitle() {
+      return this.isBirthdayMode ? "Congratulations" : "Happy Birthday";
+    },
+    songArtist() {
+      return this.isBirthdayMode ? "Happy Birthday Mix" : "Birthday Song";
+    }
   },
   methods: {
     togglePlay() {
@@ -84,6 +100,19 @@ export default {
     // Try to load the audio file
     this.$refs.audioPlayer.load();
   },
+  watch: {
+    isBirthdayMode(newValue) {
+      // When switching to birthday mode, reload audio and play
+      this.$refs.audioPlayer.load();
+      if (newValue && !this.isPlaying) {
+        // Automatically play music when birthday mode activates
+        setTimeout(() => {
+          this.$refs.audioPlayer.play();
+          this.isPlaying = true;
+        }, 1000); // Short delay to ensure audio is loaded
+      }
+    }
+  },
 };
 </script>
 
@@ -93,13 +122,14 @@ export default {
   bottom: 20px;
   right: 20px;
   background-color: rgba(10, 10, 32, 0.8);
+  border: 1px solid rgba(0, 255, 204, 0.3);
   padding: 1rem;
   border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 1rem;
   z-index: 1000;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 255, 204, 0.2);
   backdrop-filter: blur(5px);
 }
 
@@ -110,8 +140,8 @@ export default {
 }
 
 .btn-custom {
-  background-color: var(--primary-color);
-  color: var(--bg-color);
+  background-color: #00ffcc;
+  color: #0a0a20;
   border: none;
   width: 40px;
   height: 40px;
@@ -123,7 +153,8 @@ export default {
 }
 
 .btn-custom:hover {
-  background-color: var(--secondary-color);
+  background-color: #ff3399;
+  color: #ffffff;
   transform: scale(1.1);
 }
 
@@ -131,7 +162,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--text-color);
+  color: #ffffff;
 }
 
 .volume-slider {
@@ -140,7 +171,7 @@ export default {
   -webkit-appearance: none;
   appearance: none;
   background-clip: none;
-  background: var(--primary-color);
+  background: #00ffcc;
   border-radius: 2px;
   outline: none;
 }
@@ -149,7 +180,7 @@ export default {
   -webkit-appearance: none;
   width: 12px;
   height: 12px;
-  background: var(--accent-color);
+  background: #ff3399;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -170,10 +201,9 @@ export default {
   white-space: nowrap;
 }
 
-
 .song-title {
   font-weight: bold;
-  color: var(--accent-color);
+  color: #00ffcc;
 }
 
 .song-artist {

@@ -149,11 +149,20 @@ export default {
 }
 
 .btn-custom {
-  color: white;
+  background-color: #00ffcc;
+  color: #05051a;
   border: none;
   padding: 0.5rem 2rem;
-  border-radius: 25px;
-  cursor: pointer;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #ff3399;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 51, 153, 0.4);
 }
 
 .wish-header {

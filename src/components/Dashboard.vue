@@ -1015,11 +1015,21 @@ body {
   line-height: 1.6;
   color: var(--dark-color);
   background-color: var(--light-color);
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard .container-fluid,
+.dashboard {
+  padding: 0;
+  margin: 0;
+  max-width: none;
 }
 
 .dashboard {
   display: flex;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -1034,7 +1044,7 @@ body {
 .main-content {
   flex: 1;
   margin-left: 250px;
-  padding: 1.5rem;
+  padding: 0.25rem;
 }
 
 .sidebar-header {
@@ -1104,7 +1114,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .page-title {
@@ -1114,8 +1124,8 @@ body {
 .dashboard-metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .metric-card {
@@ -1141,7 +1151,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .section-title {
@@ -1158,7 +1168,7 @@ body {
 .panel {
   background-color: white;
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 1rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -1364,7 +1374,7 @@ input[type="color"] {
 }
 
 .wishes-section {
-  padding: 1.5rem;
+  padding: 0;
 }
 
 .wishes-list {
@@ -1540,7 +1550,7 @@ input[type="color"] {
 }
 
 .photos-section {
-  padding: 1.5rem;
+  padding: 0;
 }
 
 .photos-grid {
@@ -1732,7 +1742,7 @@ input[type="color"] {
 }
 
 .settings-section {
-  padding: 1.5rem;
+  padding: 0;
 }
 
 .settings-panels {
@@ -1838,5 +1848,9 @@ input[type="color"] {
 
 .photo-preview:hover {
   transform: scale(1.02);
+}
+
+.dashboard-section {
+  padding: 0;
 }
 </style>
