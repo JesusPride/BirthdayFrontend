@@ -123,19 +123,54 @@ export default {
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
 
-      console.log(this.birthday);
+      // Clear any existing stars
+      bgAnimation.innerHTML = '';
 
-      for (let i = 0; i < 100; i++) {
-        const star = document.createElement("div");
-        star.classList.add("star");
-        star.style.left = `${Math.random() * screenWidth}px`;
-        star.style.top = `${Math.random() * screenHeight}px`;
-        star.style.animationDelay = `${Math.random() * 5}s`;
-        bgAnimation.appendChild(star);
+      // Divide screen into 4 quadrants for even distribution
+      for (let quadrant = 0; quadrant < 4; quadrant++) {
+        // Create stars for each quadrant (15 per quadrant = 60 total)
+        for (let i = 0; i < 15; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+          
+          // Calculate quadrant boundaries
+          const startX = (quadrant % 2) * (screenWidth / 2);
+          const startY = Math.floor(quadrant / 2) * (screenHeight / 2);
+          
+          // Position within quadrant
+          star.style.left = `${startX + Math.random() * (screenWidth / 2)}px`;
+          star.style.top = `${startY + Math.random() * (screenHeight / 2)}px`;
+          
+          // More varied animation timing
+          star.style.animationDelay = `${Math.random() * 10}s`;
+          star.style.animationDuration = `${4 + Math.random() * 6}s`;
+          
+          // All stars have the same color
+          star.style.backgroundColor = "#00ffcc";
+          star.style.boxShadow = "0 0 2px rgba(0, 255, 204, 0.6)";
+          
+          // Make stars smaller by default
+          star.style.width = '1px';
+          star.style.height = '1px';
+          
+          // Fewer large stars
+          if (Math.random() > 0.85) {
+            star.style.width = '2px';
+            star.style.height = '2px';
+          }
+          if (Math.random() > 0.95) {
+            star.style.width = '3px';
+            star.style.height = '3px';
+          }
+          
+          bgAnimation.appendChild(star);
+        }
       }
     },
     onBirthdayReached() {
       this.isBirthday = true;
+      // Emit event to parent to switch music
+      this.$emit('birthday-reached');
       if (this.$refs.confettiCanvas) {
         this.$refs.confettiCanvas.launchConfetti();
       }
@@ -156,32 +191,33 @@ export default {
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
 .bg-animation {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  opacity: 0.3;
+  z-index: 0;
+  opacity: 1;
+  pointer-events: none;
 }
 
 .star {
   position: absolute;
-  background-color: #ff6b6b;
+  background-color: #00ffcc;
   width: 2px;
   height: 2px;
   border-radius: 50%;
   animation: twinkle 5s infinite;
+  box-shadow: 0 0 2px rgba(0, 255, 204, 0.6);
 }
 
 @keyframes twinkle {
   0%,
   100% {
-    opacity: 0.2;
+    opacity: 0.3;
   }
   50% {
     opacity: 1;
@@ -240,18 +276,20 @@ export default {
 }
 
 #birthdayDate {
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-  color: #ff6b6b;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-  font-weight: 500;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: #ff3399;
+  margin: 2rem auto;
+  background-color: rgba(255, 51, 153, 0.1);
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
   box-shadow: 0 0 15px rgba(255, 51, 153, 0.3);
-
 }
 
 .blinking-dot {
   animation: blink 1s infinite;
-  color: #ff6b6b;
+  color: #ff3399;
   margin: 0 0.2rem;
 }
 
@@ -271,8 +309,8 @@ export default {
   font-size: 4rem;
   margin: 2rem 0;
   cursor: pointer;
-  color: #ff6b6b;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  color: #00ffcc;
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
   transition: all 0.3s ease;
   font-weight: bold;
   letter-spacing: 2px;
@@ -280,7 +318,7 @@ export default {
 
 .time-display:hover {
   transform: scale(1.05);
-  text-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+  text-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
 }
 
 .blinking {
@@ -290,7 +328,7 @@ export default {
 .blinking-note {
   font-size: 1rem;
   opacity: 0.7;
-  color: #ff6b6b;
+  color: #00ffcc;
   margin-top: 0.5rem;
 }
 
@@ -315,8 +353,8 @@ export default {
 .birthday-message h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  color: #ff6b6b;
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  color: #00ffcc;
 }
 
 .birthday-message p {

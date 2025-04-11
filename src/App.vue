@@ -6,13 +6,19 @@
   <div v-else class="app-container">
     <AppNavbar v-if="!isDashboard && !isBirthdayCountdown" @open-modal="openModal" />
     <ThemeToggle v-if="isBirthdayCountdown" />
-    <AudioPlayer v-if="isBirthdayCountdown" />
+    <AudioPlayer 
+      v-if="isBirthdayCountdown" 
+      :is-birthday-mode="birthdayReached" 
+    />
     <AppModal 
       :is-active="isModalActive" 
       :initial-tab="activeTab"
       @close="closeModal"
     />
-    <router-view @open-modal="openModal" />
+    <router-view 
+      @open-modal="openModal" 
+      @birthday-reached="handleBirthdayReached"
+    />
   </div>
 </template>
 
@@ -35,7 +41,8 @@ export default {
     return {
       isLoading: true,
       isModalActive: false,
-      activeTab: 'login'
+      activeTab: 'login',
+      birthdayReached: false
     }
   },
   computed: {
@@ -57,6 +64,9 @@ export default {
     },
     closeModal() {
       this.isModalActive = false
+    },
+    handleBirthdayReached() {
+      this.birthdayReached = true;
     }
   },
   mounted() {
