@@ -26,19 +26,9 @@
     <div v-if="errorMessage" class="alert alert-danger" role="alert">
       {{ errorMessage }}
     </div>
-
-    <div class="wishes-list">
-      <div v-for="(wish, index) in wishes" :key="index" class="wish-card">
-        <div class="wish-header">
-          <div class="wisher-name">
-            {{ wish.sender_name || wish.senderName || "Anonymous" }}
-          </div>
-          <div class="wish-date">
-            {{ formatDate(wish.created_at || wish.date) }}
-          </div>
-        </div>
-        <p>{{ wish.message }}</p>
-      </div>
+    
+    <div v-if="successMessage" class="alert alert-success" role="alert">
+      {{ successMessage }}
     </div>
   </div>
 </template>
@@ -66,6 +56,7 @@ export default {
       },
       isSubmitting: false,
       errorMessage: "",
+      successMessage: "",
     };
   },
   methods: {
@@ -89,6 +80,7 @@ export default {
 
       this.isSubmitting = true;
       this.errorMessage = "";
+      this.successMessage = "";
 
       try {
         const wishData = {
@@ -107,6 +99,14 @@ export default {
 
           this.newWish.name = "";
           this.newWish.message = "";
+          
+          // Show success notification
+          this.successMessage = "Your birthday wish has been sent successfully!";
+          
+          // Clear success message after 5 seconds
+          setTimeout(() => {
+            this.successMessage = "";
+          }, 5000);
 
           this.$emit("add-wish", wishData);
         } else {
@@ -146,6 +146,20 @@ export default {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white !important;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.message-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+}
+
+.message-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #00ffcc;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 255, 204, 0.2);
 }
 
 .btn-custom {
@@ -165,36 +179,6 @@ export default {
   box-shadow: 0 5px 15px rgba(255, 51, 153, 0.4);
 }
 
-.wish-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.wisher-name {
-  font-weight: 600;
-  color: #fff;
-}
-
-.wish-date {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.wish-card {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.wish-card p {
-  margin: 0;
-  color: #fff;
-  line-height: 1.5;
-}
-
 .alert-danger {
   background-color: rgba(220, 53, 69, 0.1);
   border: 1px solid rgba(220, 53, 69, 0.2);
@@ -203,5 +187,23 @@ export default {
   border-radius: 0.25rem;
   margin-bottom: 1rem;
   text-align: center;
+}
+
+.alert-success {
+  background-color: rgba(0, 255, 204, 0.1);
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  color: #00ffcc;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  animation: fadeInOut 5s forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
 </style>
