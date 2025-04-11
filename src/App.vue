@@ -43,7 +43,7 @@ export default {
       return this.$route.path.startsWith('/dashboard')
     },
     isBirthdayCountdown() {
-      return this.$route.path === '/birthday'
+      return this.$route.path.startsWith('/birthday')
     }
   },
   setup() {
