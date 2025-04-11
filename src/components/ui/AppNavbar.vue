@@ -42,6 +42,7 @@ export default {
       isMobileMenuOpen: false
     }
   },
+  
   methods: {
     toggleMobileMenu() {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
