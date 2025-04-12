@@ -19,14 +19,14 @@
         @birthday-reached="onBirthdayReached"
       />
 
-      <div
+      <!-- <div
         class="time-display"
         :class="{ blinking: isBlinking }"
         @click="toggleBlinking"
       >
         14 | 04
       </div>
-      <p class="text-white blinking-note">Click to toggle blinking</p>
+      <p class="text-white blinking-note">Click to toggle blinking</p> -->
     </div>
 
     <div v-else class="birthday-content">
@@ -47,6 +47,11 @@
       :unique-route="uniqueRoute"
       @add-wish="addWish"
     />
+    
+    <!-- Mobile Audio Player (only visible on mobile) -->
+    <div class="mobile-player-container">
+      <MobileAudioPlayer :is-birthday-mode="isBirthday" />
+    </div>
   </div>
 </template>
 
@@ -56,6 +61,7 @@ import ConfettiEffect from "./ConfettiEffect.vue";
 import PhotoCarousel from "./PhotoCarousel.vue";
 import CountdownTimer from "./CountdownTimer.vue";
 import BirthdayWish from "./BirthdayWish.vue";
+import MobileAudioPlayer from "./MobileAudioPlayer.vue";
 
 export default {
   name: "BirthdayCountdown",
@@ -64,6 +70,7 @@ export default {
     PhotoCarousel,
     CountdownTimer,
     BirthdayWish,
+    MobileAudioPlayer
   },
   setup() {
     const themeStore = useThemeStore();
@@ -380,6 +387,18 @@ export default {
 
   .birthday-message p {
     font-size: 1rem;
+  }
+}
+
+/* Mobile Audio Player Container */
+.mobile-player-container {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-player-container {
+    display: block;
+    margin-top: 1rem;
   }
 }
 </style>
