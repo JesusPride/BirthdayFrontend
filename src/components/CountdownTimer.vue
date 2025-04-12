@@ -76,17 +76,99 @@ export default {
 }
 </script>
 
-<style>
-/* Component-specific styles only */
+<style scoped>
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-@media (max-width: 768px){
-  .countdown-container{
-    display: flex
-;
-        flex-direction: row;
-        flex-wrap: wrap;
-        /* background: red; */
-        width: 100%;
+.countdown-unit {
+  background: rgba(0, 0, 0, 0.2);
+  padding: clamp(0.5rem, 2vw, 1.5rem);
+  border-radius: 10px;
+  margin: 0;
+  min-width: clamp(60px, 15vw, 120px);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.countdown-unit:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.countdown-value {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: bold;
+  color: #00ffcc;
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.countdown-label {
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  color: white;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .countdown-container {
+    gap: 0.5rem;
+  }
+  
+  .countdown-unit {
+    padding: 0.5rem;
+    min-width: 60px;
+  }
+  
+  .countdown-value {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.7rem;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 481px) and (max-width: 768px) {
+  .countdown-container {
+    gap: 1rem;
+  }
+  
+  .countdown-unit {
+    min-width: 80px;
+  }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 480px) and (orientation: landscape) {
+  .countdown-container {
+    margin-top: 0.5rem;
+  }
+  
+  .countdown-unit {
+    padding: 0.3rem 0.5rem;
+    min-width: 50px;
+  }
+  
+  .countdown-value {
+    font-size: 1.2rem;
+    margin-bottom: 0.1rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.6rem;
   }
 }
 </style>

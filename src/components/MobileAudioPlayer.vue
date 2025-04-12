@@ -1,5 +1,5 @@
 <template>
-  <div class="audio-player">
+  <div class="mobile-audio-player">
     <audio
       ref="audioPlayer"
       :src="musicSrc"
@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: "AudioPlayer",
+  name: "MobileAudioPlayer",
   props: {
     isBirthdayMode: {
       type: Boolean,
@@ -117,10 +117,8 @@ export default {
 </script>
 
 <style scoped>
-.audio-player {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+.mobile-audio-player {
+  position: relative;
   background-color: rgba(10, 10, 32, 0.8);
   border: 1px solid rgba(0, 255, 204, 0.3);
   padding: 0.75rem;
@@ -129,38 +127,35 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  z-index: 1000;
+  z-index: 5;
   box-shadow: 0 4px 15px rgba(0, 255, 204, 0.2);
   backdrop-filter: blur(5px);
-  max-width: 300px;
-}
-
-/* Hide on mobile */
-@media (max-width: 768px) {
-  .audio-player {
-    display: none;
-  }
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 
 .btn-custom {
   background-color: #00ffcc;
   color: #0a0a20;
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .btn-custom:hover {
@@ -177,7 +172,7 @@ export default {
 }
 
 .volume-slider {
-  width: 100px;
+  width: 70px;
   height: 4px;
   -webkit-appearance: none;
   appearance: none;
@@ -206,7 +201,7 @@ export default {
   flex-direction: column;
   color: var(--text-color);
   font-size: 0.8rem;
-  max-width: 150px;
+  max-width: 120px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -221,4 +216,4 @@ export default {
   font-size: 0.7rem;
   opacity: 0.8;
 }
-</style>
+</style> 

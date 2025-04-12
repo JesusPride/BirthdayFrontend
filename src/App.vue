@@ -9,6 +9,7 @@
     <AudioPlayer 
       v-if="isBirthdayCountdown" 
       :is-birthday-mode="birthdayReached" 
+      class="desktop-only"
     />
     <AppModal 
       :is-active="isModalActive" 
@@ -100,4 +101,13 @@ export default {
 
 <style>
 /* Global styles are now in main.css */
+.desktop-only {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+}
 </style>

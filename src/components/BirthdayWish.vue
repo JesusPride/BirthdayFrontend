@@ -1,4 +1,3 @@
-
 <template>
   <div class="wishes-section">
     <h3 class="mb-4">Leave a Birthday Wish for Esther</h3>
@@ -21,7 +20,7 @@
       @click="addWish"
       :disabled="isSubmitting"
     >
-      {{ isSubmitting ? "Submitting..." : "Add Wish" }}
+      {{ isSubmitting ? "Submitting..." : "Send Wish" }}
     </button>
 
     <div v-if="errorMessage" class="alert alert-danger" role="alert">
@@ -137,10 +136,14 @@ export default {
 .wishes-section {
   max-width: 800px;
   margin: 2rem auto;
-  padding: 2rem;
+  padding: clamp(1rem, 5vw, 2rem);
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   color: white;
+  width: 90%;
+  backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 1;
 }
 
 .message-input {
@@ -151,6 +154,7 @@ export default {
   font-size: 1rem;
   width: 100%;
   transition: all 0.3s ease;
+  border-radius: 8px;
 }
 
 .message-input::placeholder {
@@ -177,7 +181,7 @@ export default {
   max-width: 200px;
 }
 
-.btn-custom:hover {
+.btn-custom:hover, .btn-custom:active {
   background-color: #ff3399;
   color: white;
   transform: translateY(-2px);
@@ -212,11 +216,12 @@ export default {
   100% { opacity: 0; }
 }
 
-/* Responsive styles */
+/* Tablet styles */
 @media (max-width: 768px) {
   .wishes-section {
     margin: 1.5rem auto;
     padding: 1.5rem;
+    width: 95%;
   }
 
   .message-input {
@@ -230,12 +235,13 @@ export default {
   }
 }
 
+/* Mobile styles */
 @media (max-width: 480px) {
   .wishes-section {
-    width: 90%;
+    width: 95%;
     margin: 1rem auto;
     padding: 1rem;
-    /* background: #dc3545; */
+    border-radius: 8px;
   }
 
   .message-input {
@@ -248,9 +254,30 @@ export default {
     max-width: 160px;
     font-size: 0.9rem;
   }
-
+  
   h3 {
     font-size: 1.2rem;
+  }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 480px) and (orientation: landscape) {
+  .wishes-section {
+    margin: 0.8rem auto;
+    padding: 0.8rem;
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .mb-3, .mb-4 {
+    margin-bottom: 0.5rem !important;
+  }
+  
+  textarea.message-input {
+    rows: 2;
   }
 }
 </style>
