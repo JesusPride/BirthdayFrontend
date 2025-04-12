@@ -1,3 +1,4 @@
+
 <template>
   <div class="wishes-section">
     <h3 class="mb-4">Leave a Birthday Wish for Esther</h3>
@@ -148,6 +149,8 @@ export default {
   color: white !important;
   padding: 0.75rem;
   font-size: 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
 .message-input::placeholder {
@@ -170,6 +173,8 @@ export default {
   border-radius: 50px;
   font-weight: 600;
   transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;
 }
 
 .btn-custom:hover {
@@ -205,5 +210,47 @@ export default {
   10% { opacity: 1; }
   80% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .wishes-section {
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+  }
+
+  .message-input {
+    padding: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .btn-custom {
+    padding: 0.5rem 1.5rem;
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wishes-section {
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem;
+    /* background: #dc3545; */
+  }
+
+  .message-input {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-custom {
+    padding: 0.4rem 1.2rem;
+    max-width: 160px;
+    font-size: 0.9rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
 }
 </style>

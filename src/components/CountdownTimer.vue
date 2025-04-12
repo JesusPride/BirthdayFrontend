@@ -1,3 +1,5 @@
+Countdowntimer.vue 
+
 <template>
   <div class="countdown-container">
     <div class="countdown-unit">
@@ -76,4 +78,15 @@ export default {
 
 <style>
 /* Component-specific styles only */
-</style> 
+
+@media (max-width: 768px){
+  .countdown-container{
+    display: flex
+;
+        flex-direction: row;
+        flex-wrap: wrap;
+        /* background: red; */
+        width: 100%;
+  }
+}
+</style>
