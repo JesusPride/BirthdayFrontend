@@ -78,7 +78,7 @@ export default {
     return { themeStore };
   },
   data() {
-    const birthday = new Date("2025-04-09T15:54:00");
+    const birthday = new Date("2025-04-14T00:00:00");
     console.log("Birthday date initialized:", birthday.toISOString());
 
     // Load photos from localStorage
