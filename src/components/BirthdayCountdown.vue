@@ -78,7 +78,7 @@ export default {
     return { themeStore };
   },
   data() {
-    const birthday = new Date("2025-04-14T15:54:00");
+    const birthday = new Date("2025-04-14T00:00:00");
     console.log("Birthday date initialized:", birthday.toISOString());
 
     // Load photos from localStorage
@@ -91,9 +91,20 @@ export default {
           alt: "Birthday photo",
         }))
       : [
-          { src: "/images/birthday-1.jpg", alt: "Happy Esther Day" },
-          { src: "/images/birthday-2.jpg", alt: "Birthday Smiles" },
-          { src: "/images/birthday-3.jpg", alt: "Best Moments" },
+          { src: "/images/birthday-1.JPG", alt: "Happy Birthday Esther!" },
+          { src: "/images/birthday-2.jpg", alt: "Celebrating Your Special Day" },
+          { src: "/images/birthday-3.JPG", alt: "Best Wishes For You" },
+          { src: "/images/IMG_3951 2.jpg", alt: "Special Moments" },
+          { src: "/images/IMG_3755.jpg", alt: "Beautiful Memories" },
+          { src: "/images/IMG_4324.jpg", alt: "Joyful Celebrations" },
+          { src: "/images/IMG_4325_2.jpg", alt: "Wonderful Times" },
+          { src: "/images/IMG_7013_2.jpg", alt: "Birthday Joy" },
+          { src: "/images/IMG_2614.jpg", alt: "Cherished Memories" },
+          { src: "/images/WhatsApp Image 2025-04-13 at 17.49.34 (1).jpeg", alt: "Special Day" },
+          { src: "/images/WhatsApp Image 2025-04-13 at 17.49.35 (1).jpeg", alt: "Celebration Time" },
+          { src: "/images/WhatsApp Image 2025-04-13 at 17.49.37.jpeg", alt: "Memorable Moments" },
+          { src: "/images/WhatsApp Image 2025-04-13 at 17.49.36 (8).jpeg", alt: "Birthday Cheer" },
+          { src: "/images/WhatsApp Image 2025-04-13 at 17.49.36 (9).jpeg", alt: "Happy Celebrations" }
         ];
 
     return {
